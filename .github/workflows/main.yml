@@ -30,18 +30,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python: "3.12"
+          - python: "3.10"
             task:
               name: "Build"
               run: |
                 python setup.py check
                 python setup.py bdist_wheel sdist
-          - python: "3.12"
+          - python: "3.10"
             task:
               name: "Lint"
               run: |
                 black --check .
-          - python: "3.12"
+          - python: "3.10"
             task:
               name: "Test"
               run: pytest --exitfirst --failed-first --assert=plain
@@ -87,7 +87,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"
+          python-version: "3.10"
 
       - name: Install requirements
         run: |
