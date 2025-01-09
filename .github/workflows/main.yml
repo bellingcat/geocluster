@@ -30,25 +30,25 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python: "3.10"
+          - python: "3.12"
             task:
               name: "Build"
               run: |
                 python setup.py check
                 python setup.py bdist_wheel sdist
-          - python: "3.10"
+          - python: "3.12"
             task:
               name: "Lint"
               run: |
                 black --check .
-          - python: "3.10"
+          - python: "3.12"
             task:
               name: "Test"
-              run: pytest --exitfirst --failed-first
-          - python: "3.7"
+              run: pytest --exitfirst --failed-first --assert=plain
+          - python: "3.8"
             task:
-              name: "Test (3.7)"
-              run: pytest --exitfirst --failed-first
+              name: "Test (3.8)"
+              run: pytest --exitfirst --failed-first --assert=plain
     steps:
       - uses: actions/checkout@v3
 
