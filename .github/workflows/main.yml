@@ -44,11 +44,11 @@ jobs:
           - python: "3.10"
             task:
               name: "Test"
-              run: pytest --exitfirst --failed-first
-          - python: "3.7"
+              run: pytest --exitfirst --failed-first --assert=plain
+          - python: "3.8"
             task:
-              name: "Test (3.7)"
-              run: pytest --exitfirst --failed-first
+              name: "Test (3.8)"
+              run: pytest --exitfirst --failed-first --assert=plain
     steps:
       - uses: actions/checkout@v3
 
@@ -65,7 +65,7 @@ jobs:
 
       - name: Upload package distribution files
         if: matrix.task.name == 'Build'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: package
           path: dist
@@ -99,7 +99,7 @@ jobs:
           echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - name: Download package distribution files
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: package
           path: dist
